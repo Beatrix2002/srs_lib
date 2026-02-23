@@ -1,0 +1,20 @@
+--[[
+    https://github.com/overextended/ox_lib
+
+    This file is licensed under LGPL-3.0 or higher <https://www.gnu.org/licenses/lgpl-3.0.en.html>
+
+    Copyright (c) 2025 Linden <https://github.com/thelindat>
+]]
+
+function srs.lib.requestModel(model, timeout)
+    if type(model) ~= 'number' then model = joaat(model) end
+    if HasModelLoaded(model) then return model end
+
+    if not IsModelValid(model) and not IsModelInCdimage(model) then
+        error(("attempted to load invalid model '%s'"):format(model))
+    end
+
+    return srs.lib.streamingRequest(RequestModel, HasModelLoaded, 'model', model, timeout)
+end
+
+return srs.lib.requestModel
