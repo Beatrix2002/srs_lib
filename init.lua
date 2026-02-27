@@ -152,8 +152,6 @@ local moduleConfig = {
 		WeightedRandom = {
 			folder = 'weightedRandom',
 			files = {
-				'shared_linear.lua',
-				'shared_binary.lua',
 				'shared.lua',
 			}
 		},

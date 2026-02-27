@@ -172,8 +172,4 @@ local Linear = {
     clearAll = RandomWeightedLinear.clearAll
 }
 
-exports('WeightedRandom.Linear', function(items, resetOnEmpty, id)
-    return Linear
-end)
-
 return Linear

@@ -1,4 +1,6 @@
 local THRESHOLD = 50
+local Linear = require('libs.weightedRandom.shared_linear')
+local Binary = require('libs.weightedRandom.shared_binary')
 
 local WeightedRandom = {}
 
@@ -12,32 +14,25 @@ function WeightedRandom.create(items, resetOnEmpty, id)
         itemCount = itemCount + 1
     end
     
-    if itemCount >= THRESHOLD then
-        return srs.WeightedRandom.Binary.create(items, resetOnEmpty, id)
-    else
-        return srs.WeightedRandom.Linear.create(items, resetOnEmpty, id)
+    if itemCount > THRESHOLD then
+        return Binary.create(items, resetOnEmpty, id)
     end
+
+    return Linear.create(items, resetOnEmpty, id)
 end
 
 function WeightedRandom.getById(id)
-    return srs.WeightedRandom.Linear.getById(id) or srs.WeightedRandom.Binary.getById(id)
+    return Linear.getById(id) or Binary.getById(id)
 end
 
 function WeightedRandom.clearById(id)
-    srs.WeightedRandom.Linear.clearById(id)
-    srs.WeightedRandom.Binary.clearById(id)
+    Linear.clearById(id)
+    Binary.clearById(id)
 end
 
 function WeightedRandom.clearAll()
-    srs.WeightedRandom.Linear.clearAll()
-    srs.WeightedRandom.Binary.clearAll()
+    Linear.clearAll()
+    Binary.clearAll()
 end
 
-srs.WeightedRandom.create = WeightedRandom.create
-srs.WeightedRandom.getById = WeightedRandom.getById
-srs.WeightedRandom.clearById = WeightedRandom.clearById
-srs.WeightedRandom.clearAll = WeightedRandom.clearAll
-
-exports('WeightedRandom', function()
-    return srs.WeightedRandom
-end)
+return WeightedRandom

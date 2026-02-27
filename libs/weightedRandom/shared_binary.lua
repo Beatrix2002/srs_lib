@@ -196,9 +196,5 @@ local Binary = {
     clearAll = RandomWeightedBinary.clearAll
 }
 
-exports('WeightedRandomBinary', function()
-    return Binary
-end)
-
 return Binary
 

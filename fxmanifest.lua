@@ -10,8 +10,7 @@ use_experimental_fxv2_oal 'yes'
 files {
     'init.lua',
     'settings/*.lua',
-    'libs/**/shared.lua',
-    'libs/**/client.lua',
+    'libs/**/*.lua',
     'bridge/**/*.lua',
     'core/entities/client/EntityBase.lua',
     'core/markers/markerdraw.lua',
